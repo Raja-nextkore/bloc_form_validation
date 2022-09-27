@@ -1,5 +1,7 @@
+import 'package:bloc_form_validation/bloc/validation_bloc/validation_bloc.dart';
 import 'package:bloc_form_validation/widget/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'signup_page.dart';
 
@@ -24,12 +26,17 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
             CustomButton(
-              buttonLable: 'Sign with E-mail',
+              child: const Text(
+                'Sign with E-mail',
+                style: TextStyle(color: Colors.white),
+              ),
               onpressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>  SignUpPage(),
+                    builder: (context) => BlocProvider(
+                        create: (context) => ValidationBloc(),
+                        child: SignUpPage()),
                   ),
                 );
               },
@@ -38,7 +45,10 @@ class WelcomePage extends StatelessWidget {
               height: 15.0,
             ),
             CustomButton(
-              buttonLable: 'Sign with Google',
+              child: const Text(
+                'Sign with Google',
+                style: TextStyle(color: Colors.white),
+              ),
               onpressed: () {},
             ),
           ],
